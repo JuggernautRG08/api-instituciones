@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Institucion = require('../models/institucionModel');
 
 // Obtener todas las instituciones
@@ -12,8 +13,19 @@ const getInstituciones = async (req, res) => {
 
 // Crear una nueva institución
 const createInstitucion = async (req, res) => {
-    const nuevaInstitucion = new Institucion(req.body);
     try {
+        // Convertir campos a ObjectId si existen
+        if (req.body.iddepartamento) {
+            req.body.iddepartamento = mongoose.Types.ObjectId(req.body.iddepartamento);
+        }
+        if (req.body.idmunicipio) {
+            req.body.idmunicipio = mongoose.Types.ObjectId(req.body.idmunicipio);
+        }
+        if (req.body.idsecretaria) {
+            req.body.idsecretaria = mongoose.Types.ObjectId(req.body.idsecretaria);
+        }
+
+        const nuevaInstitucion = new Institucion(req.body);
         const institucionGuardada = await nuevaInstitucion.save();
         res.status(201).json(institucionGuardada);
     } catch (error) {
@@ -37,7 +49,22 @@ const getInstitucionById = async (req, res) => {
 // Actualizar una institución
 const updateInstitucion = async (req, res) => {
     try {
-        const institucionActualizada = await Institucion.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        // Convertir campos a ObjectId si existen
+        if (req.body.iddepartamento) {
+            req.body.iddepartamento = mongoose.Types.ObjectId(req.body.iddepartamento);
+        }
+        if (req.body.idmunicipio) {
+            req.body.idmunicipio = mongoose.Types.ObjectId(req.body.idmunicipio);
+        }
+        if (req.body.idsecretaria) {
+            req.body.idsecretaria = mongoose.Types.ObjectId(req.body.idsecretaria);
+        }
+
+        const institucionActualizada = await Institucion.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true }
+        );
         if (!institucionActualizada) {
             return res.status(404).json({ message: 'Institución no encontrada' });
         }

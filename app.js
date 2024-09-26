@@ -28,8 +28,7 @@ const swaggerOptions = {
         info: {
             title: "API de Instituciones Educativas",
             version: "1.0.0",
-            description:
-                "Documentación de la API para gestionar instituciones educativas",
+            description: "Documentación de la API para gestionar instituciones educativas",
         },
         servers: [
             {
@@ -37,12 +36,14 @@ const swaggerOptions = {
             },
         ],
     },
-    apis: ["./routes/*.js"],
+    apis: ["./routes/institucionRoutes.js", "./routes/departamentoRoutes.js", "./routes/municipioRoutes.js"],
 };
-// Generar especificación de Swagger a partir de las anotaciones JSDoc
+
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
+
 // Servir documentación Swagger en /api-docs
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 // Definir puerto
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>
