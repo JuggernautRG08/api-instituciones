@@ -85,6 +85,6 @@ const InstitucionSchema = new mongoose.Schema({
     periodos: [PeriodoSchema],
 });
 
-const Institucion = mongoose.model('Institucion', InstitucionSchema);
+const Institucion = mongoose.model('institucion', InstitucionSchema);
 
 module.exports = Institucion;

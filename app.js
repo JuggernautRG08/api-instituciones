@@ -14,11 +14,11 @@ connectDB();
 app.use(express.json());
 
 // Definir rutas
-const institucionRoutes = require("./routes/institucionRoutes");
-const departamentoRoutes = require("./routes/departamentoRoutes");
+//const institucionRoutes = require("./routes/institucionRoutes");
+//const departamentoRoutes = require("./routes/departamentoRoutes");
 const municipioRoutes = require("./routes/municipioRoutes");
-app.use("/api", institucionRoutes);
-app.use("/api", departamentoRoutes);
+//app.use("/api", institucionRoutes);
+//app.use("/api", departamentoRoutes);
 app.use("/api", municipioRoutes);
 
 // Configuración de swagger-jsdoc
