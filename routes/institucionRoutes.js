@@ -31,7 +31,7 @@ const {
  *               items:
  *                 $ref: '#/components/schemas/institucionSchema'
  */
-router.get('/api/instituciones', getInstituciones);
+router.get('/instituciones', getInstituciones);
 
 /**
  * @swagger
@@ -55,7 +55,7 @@ router.get('/api/instituciones', getInstituciones);
  *       400:
  *         description: Error en la creación de la institución
  */
-router.post('/api/instituciones', createInstitucion);
+router.post('/instituciones', createInstitucion);
 
 /**
  * @swagger
@@ -80,7 +80,7 @@ router.post('/api/instituciones', createInstitucion);
  *       404:
  *         description: Institución no encontrada
  */
-router.get('/api/instituciones/:id', getInstitucionById);
+router.get('/instituciones/:id', getInstitucionById);
 
 /**
  * @swagger
@@ -113,7 +113,7 @@ router.get('/api/instituciones/:id', getInstitucionById);
  *       404:
  *         description: Institución no encontrada
  */
-router.put('/api/instituciones/:id', updateInstitucion);
+router.put('/instituciones/:id', updateInstitucion);
 
 /**
  * @swagger
@@ -134,6 +134,6 @@ router.put('/api/instituciones/:id', updateInstitucion);
  *       404:
  *         description: Institución no encontrada
  */
-router.delete('/api/instituciones/:id', deleteInstitucion);
+router.delete('/instituciones/:id', deleteInstitucion);
 
 module.exports = router;

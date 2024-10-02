@@ -13,6 +13,6 @@ const InstitucionMongose = new mongoose.Schema({
 
 });
 
-const Institucion = mongoose.model('institucion', InstitucionMongose);
+const Institucion = mongoose.model('Institucion', InstitucionMongose);
 
 module.exports = Institucion;
