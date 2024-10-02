@@ -14,17 +14,6 @@ const getInstituciones = async (req, res) => {
 // Crear una nueva institución
 const createInstitucion = async (req, res) => {
     try {
-        // Convertir campos a ObjectId si existen
-        if (req.body.iddepartamento) {
-            req.body.iddepartamento = mongoose.Types.ObjectId(req.body.iddepartamento);
-        }
-        if (req.body.idmunicipio) {
-            req.body.idmunicipio = mongoose.Types.ObjectId(req.body.idmunicipio);
-        }
-        if (req.body.idsecretaria) {
-            req.body.idsecretaria = mongoose.Types.ObjectId(req.body.idsecretaria);
-        }
-
         const nuevaInstitucion = new Institucion(req.body);
         const institucionGuardada = await nuevaInstitucion.save();
         res.status(201).json(institucionGuardada);

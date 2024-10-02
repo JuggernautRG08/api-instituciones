@@ -1,234 +1,79 @@
-const mongoose = require('mongoose');
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Institucion:
+ *       type: object
+ *       required:
+ *         - nombre
+ *         - direccion
+ *         - telefono
+ *         - email
+ *         - director
+ *         - iddepartamento
+ *         - idmunicipio
+ *         - estado
+ *         - idsecretaria
+ *         - nosedes
+ *       properties:
+ *         nombre:
+ *           type: string
+ *           description: El nombre de la institución
+ *         direccion:
+ *           type: string
+ *           description: La dirección física de la institución
+ *         telefono:
+ *           type: string
+ *           description: El número de teléfono de la institución
+ *         email:
+ *           type: string
+ *           format: email
+ *           description: El correo electrónico de la institución
+ *         director:
+ *           type: string
+ *           description: El nombre del director de la institución
+ *         iddepartamento:
+ *           type: integer
+ *           description: El identificador del departamento donde se ubica la institución
+ *         idmunicipio:
+ *           type: integer
+ *           description: El identificador del municipio donde se ubica la institución
+ *         estado:
+ *           type: string
+ *           description: El estado actual de la institución (activo, inactivo, etc.)
+ *         idsecretaria:
+ *           type: integer
+ *           description: El identificador de la secretaría de educación asociada
+ *         nosedes:
+ *           type: integer
+ *           description: Número de sedes que tiene la institución
+ *       example:
+ *         nombre: "Institución Educativa La Esperanza"
+ *         direccion: "Calle 123 #45-67"
+ *         telefono: "123456789"
+ *         email: "contacto@institucion.edu.co"
+ *         director: "Carlos Pérez"
+ *         iddepartamento: 5
+ *         idmunicipio: 102
+ *         estado: "activo"
+ *         idsecretaria: 12
+ *         nosedes: 3
+ */
 
-const AsistenciaSchema = new mongoose.Schema({
-    fecha: {
-        type: Date,
-        required: true
+module.exports = {
+    Institucion: {
+        type: "object",
+        properties: {
+            nombre: { type: "string" },
+            direccion: { type: "string" },
+            telefono: { type: "string" },
+            email: { type: "string", format: "email" },
+            director: { type: "string" },
+            iddepartamento: { type: "integer" },
+            idmunicipio: { type: "integer" },
+            estado: { type: "string" },
+            idsecretaria: { type: "integer" },
+            nosedes: { type: "integer" },
+        },
     },
-    asistio: {
-        type: Boolean,
-        required: true
-    },
-    idmateria: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Materia',
-        required: true
-    },
-    idperiodo: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Periodo',
-        required: true
-    }
-});
-
-const EvaluacionSchema = new mongoose.Schema({
-    idmateria: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Materia',
-        required: true
-    },
-    idperiodo: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Periodo',
-        required: true
-    },
-    nombre: {
-        type: String,
-        required: true
-    },
-    descripcion: {
-        type: String
-    },
-    fecha: {
-        type: Date,
-        required: true
-    },
-    nota: {
-        valor: {
-            type: Number,
-            min: 0,
-            max: 5
-        }
-    }
-});
-
-const GrupoSchema = new mongoose.Schema({
-    idgrupo: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Grupo',
-        required: true
-    },
-    nombre: {
-        type: String,
-        required: true
-    },
-    descripcion: {
-        type: String
-    },
-    materias: [
-        {
-            idmateria: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'Materia',
-                required: true
-            },
-            nombre: {
-                type: String,
-                required: true
-            },
-            descripcion: {
-                type: String
-            }
-        }
-    ],
-    talleres: [
-        {
-            idtaller: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'Taller',
-                required: true
-            },
-            nombre: {
-                type: String,
-                required: true
-            },
-            descripcion: {
-                type: String
-            },
-            fechainicio: {
-                type: Date
-            },
-            fechafin: {
-                type: Date
-            }
-        }
-    ]
-});
-
-const EstudianteSchema = new mongoose.Schema({
-    idestudiante: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Estudiante',
-        required: true
-    },
-    nombre: {
-        type: String,
-        required: true
-    },
-    apellido: {
-        type: String,
-        required: true
-    },
-    fechanacimiento: {
-        type: Date,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    telefono: {
-        type: String
-    },
-    direccion: {
-        type: String
-    },
-    grupos: [GrupoSchema],
-    asistencias: [AsistenciaSchema],
-    evaluaciones: [EvaluacionSchema]
-});
-
-const ProfesorSchema = new mongoose.Schema({
-    idprofesor: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Profesor',
-        required: true
-    },
-    nombre: {
-        type: String,
-        required: true
-    },
-    apellido: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    telefono: {
-        type: String
-    },
-    especialidad: {
-        type: String
-    }
-});
-
-const PeriodoSchema = new mongoose.Schema({
-    idperiodo: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Periodo',
-        required: true
-    },
-    nombre: {
-        type: String,
-        required: true
-    },
-    fechainicio: {
-        type: Date,
-        required: true
-    },
-    fechafin: {
-        type: Date,
-        required: true
-    }
-});
-
-const InstitucionSchema = new mongoose.Schema({
-    nombre: {
-        type: String,
-        required: true
-    },
-    direccion: {
-        type: String,
-        required: true
-    },
-    telefono: {
-        type: String
-    },
-    email: {
-        type: String
-    },
-    director: {
-        type: String,
-        required: true
-    },
-    iddepartamento: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Departamento',
-        required: true
-    },
-    idmunicipio: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Municipio',
-        required: true
-    },
-    estado: {
-        type: String,
-        enum: ['Activo', 'Inactivo'],
-        default: 'Activo'
-    },
-    idsecretaria: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Secretaria'
-    },
-    nosedes: {
-        type: Number,
-        min: 1
-    },
-    estudiantes: [EstudianteSchema],
-    profesores: [ProfesorSchema],
-    periodos: [PeriodoSchema]
-});
-
-module.exports = mongoose.model('Institucion', InstitucionSchema);
+};

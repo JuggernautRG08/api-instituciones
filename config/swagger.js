@@ -1,8 +1,11 @@
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
+
+// Importar los esquemas
 const institucionSchema = require('../models/schemas/institucionSchema');
 const departamentosSchema = require('../models/schemas/departamentoSchema');
-const municipiosSchema = require('../models/schemas/institucionSchema');
+const municipiosSchema = require('../models/schemas/municipioSchema');
+
 // Opciones de configuración de Swagger
 const swaggerOptions = {
     swaggerDefinition: {
@@ -14,28 +17,28 @@ const swaggerOptions = {
             contact: {
                 name: "API Support",
                 url: "http://localhost:5000",
-                email: "support@api.com",
+                email: "rguardod14@gmail.com.com",
             },
         },
         components: {
             schemas: {
-                ...institucionSchema,
-                ...departamentosSchema,
-                ...institucionSchema,
+                Institucion: institucionSchema.Institucion,
+                Departamento: departamentosSchema,
+                Municipio: municipiosSchema,
             },
         },
         servers: [
             {
-                url: "http://localhost:5000", // Asegúrate de que esté correcto
+                url: "http://localhost:5000",
             },
         ],
     },
-    apis:
-        ["../routes/institucionRoutes.js"],
-    ["../routes/departamentoRoutes.js"]
-    ["../routes/municipioRoutes.js"]
+    apis: [
+        "../routes/institucionRoutes.js",
+        "../routes/departamentoRoutes.js",
+        "../routes/municipioRoutes.js"
+    ]
 };
-
 
 // Configuración de Swagger
 const swaggerDocs = swaggerJsDoc(swaggerOptions);

@@ -14,17 +14,17 @@ connectDB();
 app.use(express.json());
 
 // Definir rutas
-//const institucionRoutes = require("./routes/institucionRoutes");
-//const departamentoRoutes = require("./routes/departamentoRoutes");
+const institucionRoutes = require("./routes/institucionRoutes");
+const departamentoRoutes = require("./routes/departamentoRoutes");
 const municipioRoutes = require("./routes/municipioRoutes");
-//app.use("/api", institucionRoutes);
-//app.use("/api", departamentoRoutes);
+app.use("/api", institucionRoutes);
+app.use("/api", departamentoRoutes);
 app.use("/api", municipioRoutes);
 
 // Configuración de swagger-jsdoc
 const swaggerOptions = {
     definition: {
-        openapi: "3.0.0", // Definir que es la versión 3 de OpenAPI
+        openapi: "3.0.0", 
         info: {
             title: "API de Instituciones Educativas",
             version: "1.0.0",

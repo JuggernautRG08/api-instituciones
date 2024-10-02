@@ -29,9 +29,9 @@ const {
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Institucion'
+ *                 $ref: '#/components/schemas/institucionSchema'
  */
-router.get('/', getInstituciones);
+router.get('/api/instituciones', getInstituciones);
 
 /**
  * @swagger
@@ -44,18 +44,18 @@ router.get('/', getInstituciones);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Institucion'
+ *             $ref: '#/components/schemas/institucionSchema'
  *     responses:
  *       201:
  *         description: Institución creada exitosamente
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Institucion'
+ *               $ref: '#/components/schemas/institucionSchema'
  *       400:
  *         description: Error en la creación de la institución
  */
-router.post('/', createInstitucion);
+router.post('/api/instituciones', createInstitucion);
 
 /**
  * @swagger
@@ -76,11 +76,11 @@ router.post('/', createInstitucion);
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Institucion'
+ *               $ref: '#/components/schemas/institucionSchema'
  *       404:
  *         description: Institución no encontrada
  */
-router.get('/:id', getInstitucionById);
+router.get('/api/instituciones/:id', getInstitucionById);
 
 /**
  * @swagger
@@ -100,20 +100,20 @@ router.get('/:id', getInstitucionById);
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Institucion'
+ *             $ref: '#/components/schemas/institucionSchema'
  *     responses:
  *       200:
  *         description: Institución actualizada
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Institucion'
+ *               $ref: '#/components/schemas/institucionSchema'
  *       400:
  *         description: Error en la actualización de la institución
  *       404:
  *         description: Institución no encontrada
  */
-router.put('/:id', updateInstitucion);
+router.put('/api/instituciones/:id', updateInstitucion);
 
 /**
  * @swagger
@@ -134,6 +134,6 @@ router.put('/:id', updateInstitucion);
  *       404:
  *         description: Institución no encontrada
  */
-router.delete('/:id', deleteInstitucion);
+router.delete('/api/instituciones/:id', deleteInstitucion);
 
 module.exports = router;
